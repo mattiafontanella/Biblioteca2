@@ -63,31 +63,15 @@ CREATE TABLE Prestiti(
 
 	##############################################
 ###############################################################################
-	def select_account_biy_status(self, status):
+	def select_categorie(self):
 		sql = """
 SELECT *
-FROM Utenti
-WHERE status=:status
-;
-SELECT *
 FROM Categorie
-WHERE status=:status
 ;
-SELECT *
-FROM Libri
-WHERE status=:status
-;
-SELECT *
-FROM Prestiti
-WHERE status=:status
-;
-
-
 """
 		self.cursor_db.execute(sql, {
-			'status': status
 		})
-		return self.cursor_db.fetchone()
+		return self.cursor_db.fetchall()
 
 	#############################################################################################################################
 	def insert_categoria(self, nome):
