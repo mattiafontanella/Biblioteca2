@@ -1,5 +1,6 @@
 from Moduli import modulo_sqlite
-from tabulate import tabulate
+
+NOMI_CATEGORIE = ["Informatica", "Economia", "Giallo", "Thriller", "Horror", "Fantasy", "Gangster", "Romanzo", "Storia", "Biografia", "Fantascienza"]
 
 class Database(modulo_sqlite.Sqlite):
 	'''
@@ -57,23 +58,12 @@ CREATE TABLE Prestiti(
 	
 );
 
-INSERT INTO Categorie(nome) VALUES('Diritto');
-INSERT INTO Categorie(nome) VALUES('Economia');
-INSERT INTO Categorie(nome) VALUES('Giallo');
-INSERT INTO Categorie(nome) VALUES('Trhiller');
-INSERT INTO Categorie(nome) VALUES('Horror');
-INSERT INTO Categorie(nome) VALUES('Fantasy');
-INSERT INTO Categorie(nome) VALUES('Gangster');
-INSERT INTO Categorie(nome) VALUES('Romanzo');
-INSERT INTO Categorie(nome) VALUES('Storia');
-INSERT INTO Categorie(nome) VALUES('Biografia');
-INSERT INTO Categorie(nome) VALUES('Fantascienza');
 """
 		super().schema(sql)
 
-	#############################################################################################################################
-	def select_account_by_status(self, status):
-
+	##############################################
+###############################################################################
+	def select_account_biy_status(self, status):
 		sql = """
 SELECT *
 FROM Utenti
@@ -100,7 +90,7 @@ WHERE status=:status
 		return self.cursor_db.fetchone()
 
 	#############################################################################################################################
-	def insert_Categoria(self, nome):
+	def insert_categoria(self, nome):
 		sql = """
 INSERT INTO Categorie(
 	nome 
@@ -112,6 +102,3 @@ INSERT INTO Categorie(
 			'nome': nome
 		})
 
-
-#Informatica", "Economia", "Giallo", "Trhiller", "Horror", "Fantasy", "Gangster",
-					 # "Romanzo", "Storia", "Biografia", "Fantascienza"
