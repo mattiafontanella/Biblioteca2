@@ -11,7 +11,7 @@ def stampaMenu() :
           "5- Inventario\n"
           "6- Esci\n")
 
-def scelta1() :
+def scelta1(database) :
 
   print("che operazione devi eseguire? \n"
        "1- Richiedi un prestito un libro \n"
@@ -53,7 +53,7 @@ def scelta2() :
             M.menu()
 
 
-def scelta3() :
+def scelta3(database) :
       print("che operazione devi eseguire? \n"
             "1- Aggiungi utente \n"
             "2- Cancella utente\n"
@@ -69,15 +69,15 @@ def scelta3() :
             scelta = input()
 
       if (scelta == '1'):
-            F.aggiungiUtente()
+            F.aggiungiUtente(database)
       if (scelta == '2'):
-            F.eliminaUtente()
+            F.eliminaUtente(database)
       if (scelta=='3'):
-            F.visualizzaUtenti()
+            F.visualizzaUtenti(database)
       if (scelta == '4'):
             M.menu()
 
-def scelta4() :
+def scelta4(database) :
       print("che operazione devi eseguire? \n"
             "1- Aggiungi libro\n"
             "2- Cancella libro\n"
@@ -91,16 +91,16 @@ def scelta4() :
             scelta = input()
 
       if (scelta == '1'):
-            F.aggiungiLibro()
+            F.aggiungiLibro(database)
 
       if (scelta == '2'):
-            F.cancellaLibro()
+            F.cancellaLibro(database)
       if (scelta == '3'):
             M.menu()
 
-def scelta5 () :
+def scelta5 (database) :
       print("Inventario biblioteca: ")
-      F.visualizzaInventario()
+      F.visualizzaInventario(database)
 
 def scelta6 () :
       print("Grazie di aver utilizzato il programma")

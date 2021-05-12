@@ -29,19 +29,19 @@ def menu():
 		scelta = input()
 
 	if (scelta == '1'):
-		M.scelta1()
+		M.scelta1(database)
 	if (scelta == '2'):
-		M.scelta2()
+		M.scelta2(database)
 	if (scelta == '3'):
-		M.scelta3()
+		M.scelta3(database)
 	if (scelta == '4'):
-		M.scelta4()
+		M.scelta4(database)
 	if (scelta == '5'):
-		M.scelta5()
+		M.scelta5(database)
 	if (scelta == '6'):
 		M.scelta6()
 
 
 if __name__ == '__main__':
 	database = apri_connessione_db()
-	#menu()
+	menu()

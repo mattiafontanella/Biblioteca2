@@ -1,23 +1,19 @@
-import DB as DB
 import main as M
-import time
-import sqlite3
 
 
 def aggiungiLibro(database):
-	print("Inserisci ISBN del libro: \n")
-	ISBN = input()
-	print("Inserisci il titolo:\n ")
-	Titolo = input()
-	print("Inserisci anno di pubblicazione: \n")
-	AnnoProduzione = input()
-	print("Inserisci il numero di copie disponibili: \n")
-	Copie = input()
 	print("Inserisci autore del libro: \n")
-	Autore = input()
+	autore = input()
+	print("Inserisci il titolo:\n ")
+	titolo = input()
+	print("Inserisci anno di pubblicazione: \n")
+	anno = int(input())
+	print("Inserisci il numero di copie disponibili: \n")
+	numerocopie= int(input())
+
 	rows=database.select_categorie()
 	for row in rows:
-		print(row['id']+" \t" + row['nome'])
+		print('{0}\t{1}'.format(row['id'],row['nome']))
 	print("""Inserisci la categoria del libro tra quelle presenti nel elenco:
 			Se non è presente premi invio""")
 
@@ -30,34 +26,36 @@ def aggiungiLibro(database):
 		database.conn_db.commit()
 		id_categoria = database.cursor_db.lastrowid
 	id_categoria=int(id_categoria)
-	sql = "INSERT INTO Libro(ISBN, IDCategoria, Autore, Titolo, AnnoProduzione, NumeroCopie) " \
-		  "VALUES()"
-	conn.execute("INSERT INTO Libro(ISBN, IDCategoria, Autore, Titolo, AnnoProduzione, NumeroCopie) VALUES"), (
-	ISBN, IDCategoria, Autore, Titolo, AnnoProduzione, Copie)
-
+	database.insert_libri(autore,titolo,numerocopie,anno,id_categoria)
+	database.conn_db.commit()
 	M.menu()
 
 
-def cancellaLibro():
+def cancellaLibro(database):
 	M.menu()
 
 
-def visualizzaInventario():
+def visualizzaInventario(database):
 	M.menu()
 
 
-def aggiungiUtente():
-	global utentiAggiunti
+def aggiungiUtente(database):
+
 	print("Inserisci il nome \n")
 	nome = input()
 	print("Inserisci il cognome \n")
 	cognome = input()
+	database.insert_utenti(nome,cognome)
+	database.conn_db.commit()
 	M.menu()
 
 
-def visualizzaUtenti():
+def visualizzaUtenti(database):
+	rows = database.select_utenti()
+	for row in rows:
+		print('{0}\t{1}\t{2}'.format(row['id'],row['nome'],row['cognome']))#Coverte automaticamente il tipo di dato restituito
 	M.menu()
 
 
-def eliminaUtente():
+def eliminaUtente(database):
 	M.menu()

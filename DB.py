@@ -1,6 +1,8 @@
 from Moduli import modulo_sqlite
 
-NOMI_CATEGORIE = ["Informatica", "Economia", "Giallo", "Thriller", "Horror", "Fantasy", "Gangster", "Romanzo", "Storia", "Biografia", "Fantascienza"]
+NOMI_CATEGORIE = ["Informatica", "Economia", "Giallo", "Thriller", "Horror", "Fantasy", "Gangster", "Romanzo", "Storia",
+				"Biografia", "Fantascienza"]
+
 
 class Database(modulo_sqlite.Sqlite):
 	'''
@@ -20,7 +22,7 @@ class Database(modulo_sqlite.Sqlite):
 		sql = """
 CREATE TABLE Utenti(
 	id						INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-	nome				TEXT NOT NULL,
+	nome				    TEXT NOT NULL,
 	cognome					TEXT NOT NULL,
 	data_insert				TIMESTAMP NOT NULL
 );
@@ -62,7 +64,7 @@ CREATE TABLE Prestiti(
 		super().schema(sql)
 
 	##############################################
-###############################################################################
+	###############################################################################
 	def select_categorie(self):
 		sql = """
 SELECT *
@@ -86,3 +88,46 @@ INSERT INTO Categorie(
 			'nome': nome
 		})
 
+	##############################################################################################################
+	def select_utenti(self):
+		sql = """
+SELECT *
+FROM Utenti
+;		
+		"""
+		self.cursor_db.execute(sql, {
+		})
+		return self.cursor_db.fetchall()
+
+	########################################################
+	def insert_utenti(self, nome, cognome):
+		#DATE_TIME_NOW serve per restituire la data e ore corrente in base al fuso orario
+		sql = """
+		INSERT INTO Utenti(
+			nome,cognome,data_insert
+		) VALUES (
+			:nome,
+			:cognome,
+			"""+modulo_sqlite.DATE_TIME_NOW+"""
+		);
+		"""
+		self.cursor_db.execute(sql, {
+			'nome': nome,
+			'cognome':cognome
+
+		})
+###########################################################################
+	def insert_libri(self,autore,titolo,numerocopie,anno,id_categoria):
+		sql = """INSERT INTO Libri(autore,titolo,numerocopie,anno,id_categoria) 
+			  VALUES(
+			  :autore,:titolo,:numerocopie,:anno,:id_categoria
+			);"""
+		# Esegue la query
+		self.cursor_db.execute(sql, {
+			'autore': autore,
+			'titolo':titolo,
+			'numerocopie':numerocopie,
+			'anno':anno,
+			'id_categoria':id_categoria
+
+		})
