@@ -3,7 +3,7 @@ import Funzioni as F
 import DB as DB
 import os
 from Moduli import modulo_funzioni
-
+from tabulate import tabulate
 
 def apri_connessione_db():
 	# ABSpath serve ad avere il percorso assoluto del file corrente
@@ -20,7 +20,7 @@ def apri_connessione_db():
 	return database
 
 
-def menu():
+def menu(database):
 	M.stampaMenu()
 
 	scelta = input()
@@ -39,9 +39,9 @@ def menu():
 	if (scelta == '5'):
 		M.scelta5(database)
 	if (scelta == '6'):
-		M.scelta6()
+		M.scelta6(database)
 
 
 if __name__ == '__main__':
 	database = apri_connessione_db()
-	menu()
+	menu(database)

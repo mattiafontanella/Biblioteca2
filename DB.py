@@ -116,6 +116,16 @@ FROM Utenti
 			'cognome':cognome
 
 		})
+
+################################################################
+	def select_libri(self):
+		sql="""SELECT l.id,l.autore,l.titolo,l.numerocopie,l.anno,c.nome
+FROM Libri l,Categorie c 
+WHERE l.id_categoria =c.id;"""
+		self.cursor_db.execute(sql, {
+		})
+		return self.cursor_db.fetchall()
+
 ###########################################################################
 	def insert_libri(self,autore,titolo,numerocopie,anno,id_categoria):
 		sql = """INSERT INTO Libri(autore,titolo,numerocopie,anno,id_categoria) 
@@ -131,3 +141,4 @@ FROM Utenti
 			'id_categoria':id_categoria
 
 		})
+#####################################################################################################

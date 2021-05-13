@@ -30,9 +30,9 @@ def scelta1(database) :
   if (scelta == '2'):
         print("Funzione 2 attivata")
   if (scelta == '3'):
-        M.menu()
+        M.menu(database)
 
-def scelta2() :
+def scelta2(database) :
       print("che operazione devi eseguire? \n"
             "1- Aggiungi categoria \n"
             "2- Cancella categoria \n"
@@ -50,7 +50,7 @@ def scelta2() :
       if (scelta == '2'):
             print("Funzione 2 attivata")
       if (scelta == '3'):
-            M.menu()
+            M.menu(database)
 
 
 def scelta3(database) :
@@ -75,7 +75,7 @@ def scelta3(database) :
       if (scelta=='3'):
             F.visualizzaUtenti(database)
       if (scelta == '4'):
-            M.menu()
+            M.menu(database)
 
 def scelta4(database) :
       print("che operazione devi eseguire? \n"
@@ -96,7 +96,7 @@ def scelta4(database) :
       if (scelta == '2'):
             F.cancellaLibro(database)
       if (scelta == '3'):
-            M.menu()
+            M.menu(database)
 
 def scelta5 (database) :
       print("Inventario biblioteca: ")

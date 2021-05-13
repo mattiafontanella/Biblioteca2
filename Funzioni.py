@@ -1,5 +1,5 @@
 import main as M
-
+from tabulate import tabulate
 
 def aggiungiLibro(database):
 	print("Inserisci autore del libro: \n")
@@ -28,15 +28,18 @@ def aggiungiLibro(database):
 	id_categoria=int(id_categoria)
 	database.insert_libri(autore,titolo,numerocopie,anno,id_categoria)
 	database.conn_db.commit()
-	M.menu()
+	M.menu(database)
 
 
 def cancellaLibro(database):
-	M.menu()
+	M.menu(database)
 
 
 def visualizzaInventario(database):
-	M.menu()
+	rows= database.select_libri()
+	print(tabulate(rows,headers=["ID", "autore","titolo","Numero copie","Anno","Categoria"], tablefmt="github"))
+
+	M.menu(database)
 
 
 def aggiungiUtente(database):
@@ -47,15 +50,15 @@ def aggiungiUtente(database):
 	cognome = input()
 	database.insert_utenti(nome,cognome)
 	database.conn_db.commit()
-	M.menu()
+	M.menu(database)
 
 
 def visualizzaUtenti(database):
 	rows = database.select_utenti()
 	for row in rows:
 		print('{0}\t{1}\t{2}'.format(row['id'],row['nome'],row['cognome']))#Coverte automaticamente il tipo di dato restituito
-	M.menu()
+	M.menu(database)
 
 
 def eliminaUtente(database):
-	M.menu()
+	M.menu(database)
