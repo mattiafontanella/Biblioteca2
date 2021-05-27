@@ -1,9 +1,8 @@
 import Menu as M
-import Funzioni as F
 import DB as DB
 import os
 from Moduli import modulo_funzioni
-from tabulate import tabulate
+
 
 def apri_connessione_db():
 	# ABSpath serve ad avere il percorso assoluto del file corrente

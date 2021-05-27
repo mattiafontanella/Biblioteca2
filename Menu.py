@@ -14,11 +14,12 @@ def stampaMenu():
 
 def scelta1(database):
 	print("che operazione devi eseguire? \n"
-		  "1- Richiedi un prestito un libro \n"
+		  "1- Richiedi in prestito un libro \n"
 		  "2- Restituisci un libro \n"
-		  "3- Torna al menù principale\n")
+		  "3- Visualizza storico presiti\n"
+		  "4- Torna al menù principale\n")
 	scelta = input()
-	while (scelta != '1' and scelta != '2' and scelta != '3'):
+	while (scelta != '1' and scelta != '2' and scelta != '3' and scelta != '4'):
 		print("che operazione devi eseguire? \n"
 			  "1- Richiedi un prestito un libro \n"
 			  "2- Restituisci un libro \n"
@@ -28,8 +29,10 @@ def scelta1(database):
 	if (scelta == '1'):
 		F.effettuaPrestito(database)
 	if (scelta == '2'):
-		print("Funzione 2 attivata")
+		F.restituzione(database)
 	if (scelta == '3'):
+		F.storicoPresitti(database)
+	if (scelta == '4'):
 		M.menu(database)
 
 
@@ -39,6 +42,7 @@ def scelta2(database):
 		  "2- Cancella categoria \n"
 		  "3- Torna al menù principale\n")
 	scelta = input()
+	# controllo che che sia stato effettuato un numero del elenco
 	while (scelta != '1' and scelta != '2' and scelta != '3'):
 		print("che operazione devi eseguire? \n"
 			  "1- Aggiungi categoria \n"
@@ -47,9 +51,9 @@ def scelta2(database):
 		scelta = input()
 
 	if (scelta == '1'):
-		print("Funzione 1 attivata")
+		F.aggiungiCategoria(database)
 	if (scelta == '2'):
-		print("Funzione 2 attivata")
+		F.cancellaCategoria(database)
 	if (scelta == '3'):
 		M.menu(database)
 
